@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/themes.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -87,6 +88,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/themes.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -116,6 +118,10 @@
               "devServerTarget": "UTeM-Bus-Management:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

@@ -1,0 +1,90 @@
+<mat-sidenav-container class="sidenav-container max-div">
+  <mat-sidenav #drawer class="sidenav mat-elevation-z8" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>
+      Menu
+    </mat-toolbar>
+    <mat-list class="mat-list-bar">
+      <mat-list-item style="color: white;">
+        <img matListAvatar src="assets/image/utem-logo.ico">
+        <h3 matLine> {{user.email.substring(0, user.email.indexOf('@')).toUpperCase()}}  </h3>
+        <p matLine>
+          <span> Admin </span>
+        </p>
+      </mat-list-item>
+    </mat-list>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home/dashboard"> Laman Utama <mat-icon>home</mat-icon></a>
+      <mat-accordion >
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-icon>directions_bus</mat-icon>
+            <mat-panel-title>
+               Pengurusan Bas
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-list-item routerLink="/home/daftar-bas">Daftar Bas</a>
+          <a mat-list-item routerLink="/home/senarai-bas">Senarai Bas</a>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-icon>face</mat-icon>
+            <mat-panel-title>
+              Pemandu
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-list-item routerLink="/home/daftar-pemandu">Daftar Pemandu</a>
+          <a mat-list-item routerLink="/home/senarai-pemandu">Senarai Pemandu</a>
+          <!-- <a mat-list-item routerLink="/home/khidmat-pemandu">Kidmat Pemandu</a> -->
+        </mat-expansion-panel>
+
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-icon>assignment</mat-icon>
+            <mat-panel-title>
+              Jadual
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-list-item routerLink="/home/daftar-jadual">Daftar Jadual</a>
+          <a mat-list-item routerLink="/home/senarai-jadual">Senarai Jadual</a>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-icon>map</mat-icon>
+            <mat-panel-title>
+              Lokasi
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-list-item routerLink="/home/daftar-lokasi">Daftar Lokasi</a>
+          <a mat-list-item routerLink="/home/senarai-lokasi">Senarai Lokasi</a>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Sistem Pengurusan Bas UTeM</span>
+      <span class="toolbar-spacer"></span>
+      
+      <div class="navbar-button">
+        <button type="button" mat-icon-button>
+          <mat-icon>notifications</mat-icon>
+        </button>
+        <button type="button" mat-icon-button (click)="logOut()">
+          <mat-icon>logout</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

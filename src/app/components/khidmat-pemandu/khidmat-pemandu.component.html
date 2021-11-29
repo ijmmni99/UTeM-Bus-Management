@@ -1,0 +1,29 @@
+<div class="main-form">
+    <mat-card>
+        <mat-card-header>
+            <h1>Senarai Aduan Pemandu</h1>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-grid-list cols="2" rowHeight="700px">
+                <mat-grid-tile [style.height.px]="'700'">
+                            <mat-list [style.overflow]="'auto'" [style.width.px]="'300'" [style.height.px]="'650'">
+                                <div mat-subheader>Pemandu</div>
+                                <mat-list-item *ngFor="let folder of folders">
+                                  <a mat-line [routerLink]="['/home/khidmat-pemandu/chat-room/', 4545455]">{{folder.name}}</a>
+                                  <div mat-line> {{folder.updated | date}} </div>
+                                </mat-list-item>
+                                <div mat-subheader>Notes</div>
+                                <mat-list-item *ngFor="let note of notes">
+                                  <div mat-line>{{note.name}}</div>
+                                  <div mat-line> {{note.updated | date}} </div>
+                                </mat-list-item>
+                            </mat-list>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <router-outlet></router-outlet>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card-content>
+    </mat-card>
+</div>

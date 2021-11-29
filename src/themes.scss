@@ -1,0 +1,23 @@
+@import "../node_modules/@angular/material/theming";
+@include mat-core();
+
+$my-primary: mat-palette($mat-blue-grey, 900);
+$my-accent: mat-palette($mat-cyan, 800);
+
+$my-theme: mat-light-theme($my-primary, $my-accent);
+
+
+// $typography-configuration: mat-typography-config(
+//   $font-family: 'Nunito, sans-serif',
+// );
+
+// @include angular-material-typography($typography-configuration);
+
+@include angular-material-theme($my-theme);
+
+.alternative {
+  $my-primary: mat-palette($mat-amber, 800);
+  $my-accent: mat-palette($mat-light-green, 800);
+  $my-theme: mat-light-theme($my-primary, $my-accent);
+  @include angular-material-theme($my-theme);
+}

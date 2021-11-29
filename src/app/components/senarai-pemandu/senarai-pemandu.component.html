@@ -1,0 +1,68 @@
+
+<div class="table-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-icon mat-card-avatar>face</mat-icon>
+            <h1>Pengurusan Pemandu Bas</h1>
+        </mat-card-header>
+        <div class="search-div"  fxLayout="row">
+            <button mat-raised-button color="accent" (click)="OnCreate()">
+                <mat-icon>add</mat-icon> Daftar Pemandu
+            </button>
+            <mat-form-field class="search-form-field" floatLabel="never">
+                <input matInput [(ngModel)]="searchKey" placeholder="Carian.." autocomplete="off" (keyup)="OnSearchKeyup()">
+                <button mat-button matSuffix mat-icon-button aria-label="Padam" *ngIf="searchKey" (click)="OnSearchClear()">
+                    <mat-icon>closed</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="mat-elevation-z3 table-responsive">
+        <mat-table [dataSource]="listData" matSort>
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef>Num.</mat-header-cell>
+                <mat-cell *matCellDef="let element; let i = index">{{i + 1}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="FirstName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Nama Penuh</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.FirstName}}  {{element.LastName}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="PhoneNumber">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Nombor Telefon</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.PhoneNumber}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Email">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>E-mail</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.Email}}</mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="symbol">
+                <mat-header-cell *matHeaderCellDef>Symbol</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.symbol}}</mat-cell>
+            </ng-container> -->
+
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <button mat-icon-button (click)="OnEdit(row)"><mat-icon>launch</mat-icon></button>
+                    <button mat-icon-button color="warn" (click)="OnDelete(row.id)"><mat-icon>delete_outline</mat-icon></button>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef colspan="4">
+                    Loading data...
+                </mat-footer-cell>
+            </ng-container>
+            <ng-container matColumnDef="noData">
+                <mat-footer-cell *matFooterCellDef colspan="4">
+                    Tiada Maklumat..
+                </mat-footer-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+            <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listData!=null}"></mat-footer-row>
+            <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listData!=null && listData.data.length==0)}"></mat-footer-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="5"></mat-paginator>
+        </div>
+    </mat-card>
+</div>

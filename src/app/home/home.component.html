@@ -1,0 +1,33 @@
+
+<div class="mat-typography grid-container">
+  <mat-card style="background-color: #eceff1;" >
+    <mat-card-content>
+    <h1 class="mat-h1" style="color: #263238;">Laman Utama - PPKU</h1>
+      <mat-grid-list cols="2" rowHeight="500px">
+        <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+          <mat-card class="dashboard-card mat-elevation-z5">
+            <mat-card-header>
+              <mat-card-title>
+                {{card.title}}
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div *ngIf="card.chart == 'line'">
+                <app-line-chart></app-line-chart>
+              </div>
+              <div *ngIf="card.chart == 'bar'">
+                <app-bar-chart></app-bar-chart>
+              </div>
+              <div *ngIf="card.chart == 'lokasi'" fxFlex="100" class="map-full-card-content">
+                <agm-map [latitude]="latitude" style="height : 95vh" [longitude]="longitude" [zoom]="zoom" [styles]="styles">
+                  <agm-marker *ngFor="let data of makers" [latitude]="data.latitude" [longitude]="data.longitude" [markerDraggable]="false"
+                    ></agm-marker>
+                </agm-map>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-card>
+</div>

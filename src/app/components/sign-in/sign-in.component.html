@@ -1,0 +1,72 @@
+<!-- <div class="displayTable">
+    <div class="displayTableCell">
+  
+      <div class="authBlock">
+        <h3>Signin</h3>
+        <div class="formGroup">
+          <input type="text" class="form-control" placeholder="Username" #userName required>
+        </div>
+  
+        <div class="formGroup">
+          <input type="password" class="form-control" placeholder="Password" #userPassword required>
+        </div>
+  
+        <div class="formGroup">
+          <input type="button" class="btn btn-primary btn-block" value="Sign in"
+            (click)="ngAuthService.SignIn(userName.value, userPassword.value)">
+        </div>
+  
+        <div class="formGroup">
+          <button type="button" class="btn btn-danger btn-block" (click)="ngAuthService.GoogleAuth()">
+            Log in with Google
+          </button>
+        </div>
+  
+        <div class="forgotPassword">
+          <span routerLink="/forgot-password">Forgot Password?</span>
+        </div>
+      </div>
+  
+      <div class="redirectToLogin">
+        <span>Not registered yet?<span class="redirect" routerLink="/sign-up"> Register</span></span>
+      </div>
+  
+    </div>
+  </div> -->
+
+<div class="bg">
+  
+</div>
+  
+<div class="main-div-card">
+  <mat-card>
+    <mat-card-title style="text-align: center;">
+      <img src="assets/image/bus.gif" width="70%">
+      <h2 style="margin-top: 5px;">Log Masuk Admin</h2>
+    </mat-card-title>
+    <mat-card-content style="padding: 5px;">
+      <form fxLayoutAlign="space-around stretch" fxLayout="column" autocomplete="off" *ngIf="!isLoading">
+        <mat-form-field appearance="outline">
+            <input matInput  placeholder="E-mail Anda" #userName>
+            <mat-error>Masukkan E-mail Anda!</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <input matInput type="password" placeholder="Password" #userPassword>
+            <mat-error>Masukkan Password Anda!</mat-error>
+        </mat-form-field>
+        <div fxLayoutAlign="space-evenly center" fxLayout="row">
+            <button mat-raised-button color="primary" type="submit" (click)="signIn(userName.value, userPassword.value)">Log Masuk</button>
+        </div>
+        <div style="text-align: center;padding-top: 20px;">
+          <div class="forgotPassword" style="cursor: pointer;">
+            <span routerLink="/forgot-password">Forgot Password?</span>
+          </div>
+          <div class="redirectToLogin" >
+            <span>Not registered yet?<span class="redirect"  style="cursor: pointer; color: blue;" routerLink="/sign-up"> Register</span></span>
+          </div>
+        </div>
+      </form>
+      <mat-spinner style="margin:0 auto;" *ngIf="isLoading"></mat-spinner>
+    </mat-card-content>
+  </mat-card>
+</div>

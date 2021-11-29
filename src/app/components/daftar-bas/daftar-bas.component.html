@@ -1,0 +1,35 @@
+<div class="main-form">
+    <mat-card>
+        <mat-card-header>
+            <mat-icon mat-card-avatar>directions_bus</mat-icon>
+            <h1>Pendaftaran Bas</h1>
+        </mat-card-header>
+        <img mat-card-image src="https://pbs.twimg.com/media/DMyo2RDUEAAeb0X.jpg">
+        <mat-card-content>
+            <div class="form-container">
+                <form [formGroup]="service.form" fxLayoutAlign="space-around stretch" fxLayout="column">
+                    <input formControlName="id" hidden>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="plateNumber" onkeyup="this.value = this.value.toUpperCase();" placeholder="Nombor Plat Bas*">
+                        <mat-error>Masukkan nombor plat kenderaan!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="capacity" min="0" max="50" type="number" placeholder="Kapasiti*">
+                        <mat-error>Periksa kapasiti kenderaan!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-select formControlName="DriverID" placeholder="Pemandu Bas">
+                            <ng-container *ngFor="let i of drivers">
+                                <mat-option value="{{i.id}}">{{i.FirstName}} {{i.LastName}}</mat-option>
+                            </ng-container>
+                        </mat-select>
+                    </mat-form-field>
+                    <div fxLayoutAlign="space-evenly center" fxLayout="row">
+                        <button mat-raised-button color="primary" style="width: 45%" type="submit" (click)="OnSubmit()" [disabled]="service.form.invalid">Daftar Bas</button>
+                        <button mat-raised-button color="accent" style="width :  45%;" (click)="OnClear()">Tetapkan Semula</button>
+                    </div>
+                </form>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

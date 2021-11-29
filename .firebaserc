@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "utem-bus-management-db": {
+      "hosting": {
+        "UTeM-Bus-Management": [
+          "utem-bus-management-db"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "utem-bus-management-db"
+  }
+}

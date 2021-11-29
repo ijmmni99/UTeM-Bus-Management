@@ -1,0 +1,65 @@
+<div class="main-form">
+    <mat-card>
+        <mat-card-header>
+            <mat-icon mat-card-avatar>face</mat-icon>
+            <h1>Pendaftaran Pemandu</h1>
+        </mat-card-header>
+        <img mat-card-image src="https://pbs.twimg.com/media/DNnTPlkUEAASDXn.jpg:large">
+        <mat-card-content>
+            <div class="form-container">
+                <form [formGroup]="service.form">
+                    <mat-grid-list [cols]="handSet | async" rowHeight="380px" [gutterSize]="'10px'">
+                        <mat-grid-tile>
+                            <div class="controles-container">
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="DriverID" placeholder="Nombor Staff">
+                                    <mat-error>Masukkan Number Staff</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="FirstName"
+                                        oninput="this.value = this.value.toUpperCase()" placeholder="Nama Hadapan">
+                                    <mat-error>Masukkan Nama Hadapan</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="LastName"
+                                        oninput="this.value = this.value.toUpperCase();" placeholder="Nama Belakang">
+                                    <mat-error>Masukkan Nama Belakang</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="IdentityCard"
+                                        placeholder="Nombor IC">
+                                    <mat-error>Masukkan nombor IC</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="License" placeholder="Nombor Lesen">
+                                    <mat-error>Masukkan nombor Lesen</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </mat-grid-tile>
+                        <mat-grid-tile>
+                            <div class="controles-container">
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="PhoneNumber" placeholder="Nombor Telefon">
+                                    <mat-error>Masukkan nombor telefon</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="Email" placeholder="E-mail">
+                                    <mat-error>Masukkan E-mail</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="Password" placeholder="Password">
+                                    <mat-error>Masukkan Password</mat-error>
+                                </mat-form-field>
+                                <div style="height: 153px;" fxLayoutAlign="space-evenly center" fxLayout="row">
+                                    <button mat-raised-button style="width: 45%"  color="primary" type="submit" (click)="OnSubmit()"
+                                        [disabled]="service.form.invalid">Daftar Pemandu</button>
+                                    <button mat-raised-button style="width: 45%"  color="accent" (click)="OnClear()">Tetapkan Semula</button>
+                                </div>
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </form>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

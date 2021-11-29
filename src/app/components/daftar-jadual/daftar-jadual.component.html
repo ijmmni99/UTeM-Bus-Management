@@ -1,0 +1,116 @@
+
+<div class="main-form">
+    <mat-card>
+        <mat-card-header>
+            <mat-icon mat-card-avatar>assignment</mat-icon>
+            <h1>Pendaftaran Jadual Bas</h1>
+        </mat-card-header>
+        <img mat-card-image src="https://pbs.twimg.com/media/DMyo2RBUQAAw1iv?format=jpg&name=medium">
+        <mat-card-content>
+            <div class="form-container">
+                <form [formGroup]="service.form">
+                    <mat-grid-list [cols]="handSet | async" rowHeight="250px" [gutterSize]="'10px'">
+                        <mat-grid-tile>
+                            <div class="controles-container" style="height: 250px;">
+                                <input matInput formControlName="id" hidden />
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="anjal" placeholder="Anjal">
+                                        <mat-option value="0700 - 1600">0700 - 1600</mat-option>
+                                        <mat-option value="1100 - 2000">1100 - 2000</mat-option>
+                                        <mat-option value="1600 - 1900">1600 - 1900</mat-option>
+                                        <mat-option value="1600 - 1900">2000 - 2300</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="tarikh" type="date" placeholder="Hari dalam minggu"/>
+                                    <!-- <mat-select formControlName="hari" placeholder="Hari dalam minggu">
+                                        <mat-option value="monday">Isnin</mat-option>
+                                        <mat-option value="tuesday">Selasa</mat-option>
+                                        <mat-option value="wednesday">Rabu</mat-option>
+                                        <mat-option value="thursday">Khamis</mat-option>
+                                        <mat-option value="friday">Jumaat</mat-option>
+                                        <mat-option value="saturday">Sabtu</mat-option>
+                                        <mat-option value="sunday">Ahad</mat-option>
+                                    </mat-select> -->
+                                </mat-form-field>
+                                <mat-checkbox style="margin-left: 10px;" formControlName="lebihMasa">Kerja Lebih Masa?</mat-checkbox>
+                            </div>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <div class="controles-container" style="height: 250px;">
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="driverID" (selectionChange)="changeBus()" placeholder="Pemandu Bas" >
+                                        <ng-container *ngFor="let i of drivers">
+                                            <mat-option value="{{i.id}}">{{i.FirstName}} {{i.LastName}}</mat-option>
+                                        </ng-container>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="plateNumber" placeholder="Nombor Plat Bas"/>
+                                    <mat-error>Masukkan Nombor Plat Bas!</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                    <mat-grid-list [cols]="handSet | async" rowHeight="150px" [gutterSize]="'40px'">
+                            <mat-grid-tile>
+                                <div class="controles-container" style="height: 150px;">
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="lokasiA" placeholder="Perhentian Pertama">
+                                        <ng-container *ngFor="let i of places">
+                                            <mat-option value="{{i.id}}">{{i.locationName}}</mat-option>
+                                        </ng-container>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="timeStart" type="time" placeholder="Masa Perhentian" />
+                                    <mat-error>Masukkan masa perhentian</mat-error>
+                                </mat-form-field>
+                            </div>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <div class="controles-container" style="height: 150px;">
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="lokasiB" placeholder="Perhentian Kedua">
+                                        <ng-container *ngFor="let i of places">
+                                            <mat-option value="{{i.id}}">{{i.locationName}}</mat-option>
+                                        </ng-container>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="timeMiddle" type="time" placeholder="Masa Perhentian" />
+                                    <mat-error>Masukkan masa perhentian</mat-error>
+                                </mat-form-field>
+                            </div>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                            <div class="controles-container" style="height: 150px;">
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="lokasiC" placeholder="Perhentian Ketiga">
+                                        <ng-container *ngFor="let i of places">
+                                            <mat-option value="{{i.id}}">{{i.locationName}}</mat-option>
+                                        </ng-container>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="timeEnd" type="time" placeholder="Masa Perhentian" />
+                                    <mat-error>Masukkan masa perhentian</mat-error>
+                                </mat-form-field>
+                            </div>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                            <div class="controles-container" style="height: 200px;">
+                                <input formControlName="status" hidden />
+                                <div style="height: 153px;" fxLayoutAlign="space-evenly center" fxLayout="row">
+                                    <button mat-raised-button style="width: 45%"  color="primary" type="submit" (click)="OnSubmit()"
+                                        [disabled]="service.form.invalid">Daftar Jadual</button>
+                                    <button mat-raised-button style="width: 45%"  color="accent" (click)="OnClear()">Tetapkan Semula</button>
+                                </div>
+                            </div>
+                            </mat-grid-tile>
+                    </mat-grid-list>
+                </form>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

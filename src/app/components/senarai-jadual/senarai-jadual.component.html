@@ -1,0 +1,206 @@
+
+<div class="table-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-icon mat-card-avatar>assignment</mat-icon>
+            <h1>Pengurusan Jadual Bas</h1>
+        </mat-card-header>
+        <div class="search-div"  fxLayout="row">
+            <button mat-raised-button color="accent" (click)="OnCreate()">
+                <mat-icon>add</mat-icon> Daftar Jadual
+            </button>
+            <mat-form-field class="search-form-field" floatLabel="never">
+                <input matInput [(ngModel)]="searchKey" placeholder="Carian.." autocomplete="off" (keyup)="OnSearchKeyup()">
+                <button mat-button matSuffix mat-icon-button aria-label="Padam" *ngIf="searchKey" (click)="OnSearchClear()">
+                    <mat-icon>closed</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="mat-elevation-z3 table-responsive">
+        <mat-table [dataSource]="listData" matSort >
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef>Num.</mat-header-cell>
+                <mat-cell *matCellDef="let element; let i = index">{{i + 1}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="DriverName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Pemandu</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.DriverName}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="tarikh">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Tarikh</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.tarikh}}</mat-cell>
+                <!-- <mat-cell *matCellDef="let element" >
+                    <ng-container *ngIf="element.hari == 'monday'">ISNIN</ng-container>
+                    <ng-container *ngIf="element.hari == 'tuesday'">SELASA</ng-container>
+                    <ng-container *ngIf="element.hari == 'wednesday'">RABU</ng-container>
+                    <ng-container *ngIf="element.hari == 'thursday'">KHAMIS</ng-container>
+                    <ng-container *ngIf="element.hari == 'friday'">JUMAAT</ng-container>
+                    <ng-container *ngIf="element.hari == 'saturday'">SABTU</ng-container>
+                    <ng-container *ngIf="element.hari == 'friday'">AHAD</ng-container>
+                </mat-cell> -->
+            </ng-container>
+            <ng-container matColumnDef="lokasiAname">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Lokasi A</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.lokasiAname}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="lokasiBname">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Lokasi B</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.lokasiBname}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="lokasiCname">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Lokasi C</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.lokasiCname}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="timeStart">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Masa</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.timeStart}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.status}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <button mat-icon-button (click)="OnEdit(row)"><mat-icon>launch</mat-icon></button>
+                    <button mat-icon-button color="warn" (click)="OnDelete(row.id)"><mat-icon>delete_outline</mat-icon></button>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef colspan="4">
+                    Loading data...
+                </mat-footer-cell>
+            </ng-container>
+            <ng-container matColumnDef="noData">
+                <mat-footer-cell *matFooterCellDef colspan="4">
+                    Tiada Maklumat..
+                </mat-footer-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+            <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listData!=null}"></mat-footer-row>
+            <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listData!=null && listData.data.length==0)}"></mat-footer-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="5"></mat-paginator>
+        </div>
+    </mat-card>
+</div>
+<div class="table-container2">
+    <mat-card>
+        <mat-card-header>
+            <mat-icon mat-card-avatar>event</mat-icon>
+            <h1>Sejarah Jadual Bas</h1>
+        </mat-card-header>
+        <div class="search-div" fxLayout="row">
+            <button mat-raised-button color="accent" (click)="exporter.exportTable('xlsx', {fileName:'test', sheet: 'sheet_name', Props: {Author: 'Talha'}})">
+                <mat-icon>print</mat-icon> Cetak Maklumat
+            </button>
+            <mat-form-field class="search-form-field3" floatLabel="never">
+                <input matInput [(ngModel)]="searchKey2" placeholder="Carian.." autocomplete="off" (keyup)="OnSearchKeyup2()">
+                <button mat-button matSuffix mat-icon-button aria-label="Padam" *ngIf="searchKey2" (click)="OnSearchClear2()">
+                    <mat-icon>closed</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field class="search-form-field2" floatLabel="never">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                  <input matStartDate formControlName="start" placeholder="Start date">
+                  <input matEndDate formControlName="end" placeholder="End date" (dateChange)="onDate()">
+                  
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              
+                <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+              </mat-form-field>
+                <button mat-button matSuffix mat-icon-button aria-label="Padam" *ngIf="this.range.value['start'] || this.range.value['end']" (click)="ClearDate()">
+                    <mat-icon>closed</mat-icon>
+                </button>
+            <!-- <mat-form-field class="search-form-field2" floatLabel="never">
+                <input matInput type="date" placeholder="Tarikh Mula" autocomplete="off" (change)="firstDate($event)">
+            </mat-form-field>
+            <mat-form-field class="search-form-field2" floatLabel="never">
+                <input matInput type="date" placeholder="Tarikh Akhir" autocomplete="off" (change)="firstDate($event)">
+            </mat-form-field> -->
+        </div>
+        <div class="mat-elevation-z3 table-responsive">
+        <mat-table matTableExporter [dataSource]="listHistory" matSort #exporter="matTableExporter" >
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef>Num.</mat-header-cell>
+                <mat-cell *matCellDef="let element; let i = index">{{i + 1}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="DriverName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Pemandu</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.DriverName}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="tarikh">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Tarikh</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.tarikh}}</mat-cell>
+                <!-- <mat-cell *matCellDef="let element" >
+                    <ng-container *ngIf="element.hari == 'monday'">ISNIN</ng-container>
+                    <ng-container *ngIf="element.hari == 'tuesday'">SELASA</ng-container>
+                    <ng-container *ngIf="element.hari == 'wednesday'">RABU</ng-container>
+                    <ng-container *ngIf="element.hari == 'thursday'">KHAMIS</ng-container>
+                    <ng-container *ngIf="element.hari == 'friday'">JUMAAT</ng-container>
+                    <ng-container *ngIf="element.hari == 'saturday'">SABTU</ng-container>
+                    <ng-container *ngIf="element.hari == 'friday'">AHAD</ng-container>
+                </mat-cell> -->
+            </ng-container>
+            <ng-container matColumnDef="lokasiAname">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Lokasi A</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.lokasiAname}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="lokasiBname">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Lokasi B</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.lokasiBname}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="lokasiCname">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Lokasi C</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.lokasiCname}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="timeStart">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Masa</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.timeStart}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.status}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <button mat-icon-button (click)="OnEdit(row)"><mat-icon>launch</mat-icon></button>
+                    <button mat-icon-button color="warn" (click)="OnDelete(row.id)"><mat-icon>delete_outline</mat-icon></button>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef colspan="4">
+                    Loading data...
+                </mat-footer-cell>
+            </ng-container>
+            <ng-container matColumnDef="noData">
+                <mat-footer-cell *matFooterCellDef colspan="4">
+                    Tiada Maklumat..
+                </mat-footer-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+            <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listHistory!=null}"></mat-footer-row>
+            <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listHistory!=null && listHistory.data.length==0)}"></mat-footer-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="5"></mat-paginator>
+    </div>
+
+    <!-- <div style="padding: 10px;">
+        <button mat-raised-button (click)="exporter.exportTable('xlsx', {fileName:'test', sheet: 'sheet_name', Props: {Author: 'Talha'}})">Excel</button>
+        <button mat-raised-button (click)="exporter.exportTable('csv')">Csv</button>
+        <button mat-raised-button (click)="exporter.exportTable('json')">Json</button>
+        <button mat-raised-button (click)="exporter.exportTable('txt')">Txt</button>
+        </div> -->
+    </mat-card>
+</div>

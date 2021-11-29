@@ -1,0 +1,10 @@
+.main-form {
+    padding:50px;
+    width: 75%;
+    margin: auto;
+}
+
+mat-card img{
+    object-fit: cover;
+    height: 10vh;
+}

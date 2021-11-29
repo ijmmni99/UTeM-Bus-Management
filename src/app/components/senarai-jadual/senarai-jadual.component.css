@@ -1,0 +1,21 @@
+.table-container{
+    padding:50px;
+    margin: auto;
+    width: 75%;
+}
+
+.table-container2{
+    padding:10px;
+    margin: auto;
+    margin-bottom: 50px;
+    width: 75%;
+}
+
+.hide {
+    display: none;
+}
+
+mat-footer-row mat-footer-cell {
+    justify-content: center;
+    font-style: italic;
+}

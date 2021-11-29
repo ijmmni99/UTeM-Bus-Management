@@ -1,0 +1,33 @@
+<div class="main-form">
+    <mat-card>
+        <mat-card-header>
+            <mat-icon mat-card-avatar>map</mat-icon>
+            <h1>Pendaftaran Lokasi</h1>
+        </mat-card-header>
+        <img mat-card-image src="https://uic.utem.edu.my/wp-content/uploads/bg-utem-scaled.jpg">
+        <mat-card-content>
+            <div class="form-container">
+                <form [formGroup]="service.form" fxLayoutAlign="space-around stretch" fxLayout="column">
+                    <input formControlName="id" hidden>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="locationName" oninput="this.value = this.value.toUpperCase();" placeholder="Nama Lokasi*">
+                        <mat-error>Masukkan Nama Location*</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="latitude" type="number" placeholder="Nombor Latitude (Google Map)*">
+                        <mat-error>Masukkan Nombor Latitude* (Guna Google Map)</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="longitude" type="number" placeholder="Nombor Longitude (Google Map)*">
+                        <mat-error>Masukkan Nombor Longitude* (Guna Google Map)</mat-error>
+                    </mat-form-field>
+                    <div fxLayoutAlign="space-evenly center" fxLayout="row">
+                        <button mat-raised-button color="primary" style="width: 30%"  type="submit" (click)="OnSubmit()" [disabled]="service.form.invalid">Daftar Lokasi</button>
+                        <button mat-raised-button color="warn" style="width: 30%"  (click)="OnClear()">Tetapkan Semula</button>
+                        <button mat-raised-button color="accent" style="width: 30%"  (click)="OpenMap()">Daftar Menggunakan Google Map</button>
+                    </div>
+                </form>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

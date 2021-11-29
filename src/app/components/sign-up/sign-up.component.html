@@ -1,0 +1,66 @@
+<!-- <div class="displayTable">
+    <div class="displayTableCell">
+  
+      <div class="authBlock">
+        <h3>Register User</h3>
+  
+        <div class="formGroup">
+          <input type="email" class="form-control" placeholder="Email Address" #userEmail required>
+        </div>
+  
+        <div class="formGroup">
+          <input type="password" class="form-control" placeholder="Password" #userPwd required>
+        </div>
+  
+        <div class="formGroup">
+          <input type="button" class="btn btn-block btn-primary" value="Sign Up"
+            (click)="ngAuthService.SignUp(userEmail.value, userPwd.value)">
+        </div>
+  
+        <div class="formGroup">
+          <button type="button" class="btn btn-block btn-danger" (click)="ngAuthService.GoogleAuth()">
+            Continue with Google
+          </button>
+        </div>
+      </div>
+  
+      <div class="redirectToLogin">
+        <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>
+      </div>
+    </div>
+  
+  </div> -->
+
+  <div class="bg">
+  
+  </div>
+    
+  <div class="main-div-card">
+    <mat-card>
+      <mat-card-title style="text-align: center;">
+        <img src="assets/image/bus.gif" width="70%">
+        <h2 style="margin-top: 5px;">Pendaftaran Akaun Admin</h2>
+      </mat-card-title>
+      <mat-card-content style="padding: 5px;">
+        <form fxLayoutAlign="space-around stretch" fxLayout="column" *ngIf="!isLoading">
+          <mat-form-field appearance="outline">
+              <input matInput  placeholder="E-mail Anda" #userEmail>
+              <mat-error>Masukkan E-mail Anda!</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <input matInput type="password" placeholder="Password" #userPwd>
+              <mat-error>Masukkan Password Anda!</mat-error>
+          </mat-form-field>
+          <div fxLayoutAlign="space-evenly center" fxLayout="row">
+              <button mat-raised-button color="primary" type="submit" (click)="signOut(userEmail.value, userPwd.value)">Daftar Akaun</button>
+          </div>
+          <div style="text-align: center;padding-top: 20px;">
+            <div class="redirectToLogin">
+              <span>Already have an account? <span class="redirect"  style="cursor: pointer; color: blue;" routerLink="/sign-in">Log In</span></span>
+            </div>
+          </div>
+      </form>
+      <mat-spinner style="margin:0 auto;" *ngIf="isLoading"></mat-spinner>
+      </mat-card-content>
+    </mat-card>
+  </div>
